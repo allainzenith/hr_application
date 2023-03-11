@@ -20,5 +20,7 @@ public class EmployeeController {
 	public ApiResult getAllEmployees() {
 		return ApiResult.CreateSuccess(employeeservice.getAllEmployees(), "Employees retrieved successfully");
 	}
+	
+
 }
 
