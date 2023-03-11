@@ -1,6 +1,7 @@
 package ph.com.alliance.jpa.functions.ticket.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,5 +39,18 @@ public class TicketController {
 	public ApiResult updateTicket(@PathVariable Integer ticketID, Ticket ticketmodel) {
 		ticketservice.updateTicket(ticketID, ticketmodel);
 		return ApiResult.CreateSuccess("Successfully updated!");
+	}
+	
+	@DeleteMapping("/delete/{ticketID}")
+	public ApiResult deleteTicket(@PathVariable Integer ticketID) {
+		ticketservice.deleteTicket(ticketID);
+		return ApiResult.CreateSuccess("Successfully deleted!");
+	}
+	
+	@GetMapping("/status/{status}")
+	public ApiResult findByStatus(@PathVariable String status) {
+		ticketservice.findByStatus(status);
+		
+		return ApiResult.CreateSuccess(ticketservice.findByStatus(status), "Retrieved Successfully");
 	}
 }

@@ -54,4 +54,17 @@ public class TicketServiceImpl implements TicketService {
 	
 	}
 	
+	@Override
+	public void deleteTicket(Integer ticketID) {
+		ticketDao.deleteById(ticketID);
+	}
+	
+	@Override
+	public List<Ticket> findByStatus(String status) {
+		ticketDao.findByStatus(status);
+		
+		List<Ticket> tickets = ticketDao.findByStatus(status);
+		return tickets;
+	}
+	
 }
