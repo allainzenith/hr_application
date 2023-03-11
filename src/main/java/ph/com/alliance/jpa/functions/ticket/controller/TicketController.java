@@ -1,0 +1,42 @@
+package ph.com.alliance.jpa.functions.ticket.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import ph.com.alliance.jpa.common.ApiResult;
+import ph.com.alliance.jpa.entity.Ticket;
+import ph.com.alliance.jpa.functions.ticket.service.TicketService;
+
+@RestController
+@RequestMapping("/ticket") //sign
+
+public class TicketController {
+	
+	@Autowired
+	TicketService ticketservice;
+	
+	@GetMapping("/getall")
+	public ApiResult getAllTickets() {
+		//return "Hello Oslob";
+		//return ticketservice.getAllTickets();
+		
+		return ApiResult.CreateSuccess(ticketservice.getAllTickets(), "Tickets retrieved successfully");
+	}
+	
+	@PostMapping("/create")
+	public ApiResult createTicket(Ticket ticketmodel) {
+		ticketservice.createTicket(ticketmodel);
+		return ApiResult.CreateSuccess("Successfully created!");
+	}
+	
+	@PutMapping("/update/{ticketID}")
+	public ApiResult updateTicket(@PathVariable Integer ticketID, Ticket ticketmodel) {
+		ticketservice.updateTicket(ticketID, ticketmodel);
+		return ApiResult.CreateSuccess("Successfully updated!");
+	}
+}
