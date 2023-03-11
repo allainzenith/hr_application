@@ -26,6 +26,7 @@ public class EmployeeController {
 		return ApiResult.CreateSuccess(employeeservice.getAllEmployees(), "Employees retrieved successfully");
 	}
 	
+
 	@PostMapping("/create")
 	public ApiResult createEmployee(Employee employeemodel) {
 		employeeservice.createEmployee(employeemodel);
@@ -50,5 +51,6 @@ public class EmployeeController {
 		
 		return ApiResult.CreateSuccess(employeeservice.findByDepartment(department), "Retrieved Successfully");
 	}
+
 }
 
