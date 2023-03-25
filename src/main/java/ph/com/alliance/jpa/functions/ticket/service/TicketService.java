@@ -13,5 +13,7 @@ public interface TicketService {
 	void updateTicket(Integer ticketID, Ticket ticket);
 	void deleteTicket(Integer ticketID);
 	Object findByStatus(String status);
+	//void updateTicketStatus(Integer ticketID, Integer status);
+	void updateTicketStatus(Integer ticketID, Integer status, Ticket ticket);
 	
 }

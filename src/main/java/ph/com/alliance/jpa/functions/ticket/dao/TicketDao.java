@@ -15,4 +15,10 @@ public interface TicketDao extends JpaRepository<Ticket, Integer>{
 	
 	@Query(value="select * from jumpstartprogram2023.ticket where status = :status", nativeQuery = true)
 	List<Ticket> findByStatus(@Param(value = "status") String status);
+	
+//	@Query(value="update jumpstartprogram2023.ticket set status =:status where ticketID = :ticketID", nativeQuery = true)
+//	void updateTicketStatus(@Param(value = "ticketID") Integer ticketID, @Param(value = "status") Integer status);
+	
+	@Query(value="update jumpstartprogram2023.ticket set status =:status where ticketID = :ticketID", nativeQuery = true)
+	void updateTicketStatus(@Param(value = "ticketID") Integer ticketID, @Param(value = "status") Integer status, @Param(value = "ticket") Ticket ticket);
 }
