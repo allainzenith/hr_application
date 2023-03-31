@@ -38,14 +38,14 @@ public class EmailServiceImp implements EmailService {
         
         mail.setMailFrom(mailFrom);
         
-        mail.setMailSubject("[SampleEmail] Subject");
+        mail.setMailSubject("[jcuetara@gmail.com] Salary Deduction");
         
         List<String> mailTo = new ArrayList<String>();
-        mailTo.add("sampleTo@mail.com");
-        mail.setMailTo(mailTo);
+        mailTo.add("ramojcuetara@gmail.com");
+        mail.setMailTo(mailTo);	
         
         List<String> mailCC = new ArrayList<String>();
-        mailCC.add("sampleCC@mail.com");
+        mailCC.add("ramojcuetara@gmail.com");
         mail.setMailCC(mailCC);
         
         mail.setMailTemplate("SampleEmailTemplate");

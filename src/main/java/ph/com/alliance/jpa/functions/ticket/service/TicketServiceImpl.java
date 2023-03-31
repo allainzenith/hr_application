@@ -35,7 +35,6 @@ public class TicketServiceImpl implements TicketService {
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
-	
 	}
 	
 	@Override
@@ -54,6 +53,7 @@ public class TicketServiceImpl implements TicketService {
 	
 	}
 	
+	
 	@Override
 	public void deleteTicket(Integer ticketID) {
 		ticketDao.deleteById(ticketID);
@@ -65,6 +65,32 @@ public class TicketServiceImpl implements TicketService {
 		
 		List<Ticket> tickets = ticketDao.findByStatus(status);
 		return tickets;
+	}
+	
+//	@Override
+//	public void updateTicketStatus(Integer ticketId, Integer status) {
+//		Ticket ticket = new Ticket();	
+//
+//		//BeanUtils.copyProperties(ticket, ticketmodel);
+//		ticket.setTicketID(ticketId);
+//		ticketDao.updateTicketStatus(ticketId, status);
+//	
+//	}
+	
+	@Override
+	public void updateTicketStatus(Integer ticketId, Integer status, Ticket ticketmodel) {
+		Ticket ticket = new Ticket();
+		
+		try {
+			BeanUtils.copyProperties(ticket, ticketmodel);
+			ticket.setTicketID(ticketId);
+			ticketDao.updateTicketStatus(ticketId, status, ticketmodel);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	
 	}
 	
 }

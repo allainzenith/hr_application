@@ -34,7 +34,7 @@ public class EmployeeController {
 		employeeservice.createEmployee(employeemodel);
 		return ApiResult.CreateSuccess("Successfully created!");
 	}
-	
+
 	@PutMapping("/update/{empID}")
 	public ApiResult updateEmployee(@PathVariable Integer empID, Employee employeemodel) {
 		employeeservice.updateEmployee(empID, employeemodel);
