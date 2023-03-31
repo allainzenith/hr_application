@@ -8,14 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ph.com.alliance.jpa.entity.Employee;
-
 import ph.com.alliance.jpa.functions.employee.dao.EmployeeDao;
-	
+
+import ph.com.alliance.jpa.functions.employee.dao.LoginEmployeeDao;
+import ph.com.alliance.jpa.functions.employee.model.EmployeeModel;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Autowired
 	EmployeeDao employeeDao;
+
+
+	@Autowired
+	LoginEmployeeDao loginemployeeDao;
+
 	
 	@Override
 	public List<Employee> getAllEmployees() {
@@ -76,4 +83,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employees;
 	}
 	
+
+	@Override
+	public List<EmployeeModel> loginEmployee(EmployeeModel employeemodel) {
+//		EmployeeModel employee = new EmployeeModel();
+		
+		loginemployeeDao.loginEmployee(employeemodel);
+//		try {
+//			BeanUtils.copyProperties(employee, employeemodel);
+//			loginemployeeDao.saveAndFlush(employee);
+//		} catch (IllegalAccessException e) {
+//			e.printStackTrace();
+//		} catch (InvocationTargetException e) {
+//			e.printStackTrace();
+//		}
+		
+		List<EmployeeModel> employees = loginemployeeDao.loginEmployee(employeemodel);
+		
+		return employees;
+	}
+
 }

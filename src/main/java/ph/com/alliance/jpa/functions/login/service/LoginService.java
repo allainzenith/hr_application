@@ -19,9 +19,13 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.stereotype.Service;
 
+
 import ph.com.alliance.jpa.entity.Employee;
-//import ph.com.alliance.jpa.entity.UserTest;
 import ph.com.alliance.jpa.functions.employee.dao.EmployeeDao;
+
+import ph.com.alliance.jpa.entity.UserTest;
+import ph.com.alliance.jpa.functions.usertest.dao.UserTestDao;
+
 
 @Service
 public class LoginService implements ILoginService, UserDetailsService, TokenEnhancer {
