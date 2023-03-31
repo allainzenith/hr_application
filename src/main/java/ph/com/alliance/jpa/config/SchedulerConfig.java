@@ -10,6 +10,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
+import org.springframework.core.env.Environment;
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  *     Configuration for Spring Scheduler
  */
