@@ -82,18 +82,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	public List<EmployeeModel> loginEmployee(EmployeeModel employeemodel) {
-		EmployeeModel employee = new EmployeeModel();
+//		EmployeeModel employee = new EmployeeModel();
 		
-		try {
-			BeanUtils.copyProperties(employee, employeemodel);
-			loginemployeeDao.saveAndFlush(employee);
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		}
+		loginemployeeDao.loginEmployee(employeemodel);
+//		try {
+//			BeanUtils.copyProperties(employee, employeemodel);
+//			loginemployeeDao.saveAndFlush(employee);
+//		} catch (IllegalAccessException e) {
+//			e.printStackTrace();
+//		} catch (InvocationTargetException e) {
+//			e.printStackTrace();
+//		}
 		
-		List<EmployeeModel> employees = loginemployeeDao.loginEmployee(employee);
+		List<EmployeeModel> employees = loginemployeeDao.loginEmployee(employeemodel);
 		
 		return employees;
 	}

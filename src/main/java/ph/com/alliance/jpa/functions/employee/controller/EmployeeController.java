@@ -56,7 +56,7 @@ public class EmployeeController {
 	
 	@PostMapping("/login")
 	public ApiResult loginEmployee(@RequestBody EmployeeModel employeemodel) {
-		employeeservice.loginEmployee(employeemodel);
+//		employeeservice.loginEmployee(employeemodel);
 		return ApiResult.CreateSuccess(employeeservice.loginEmployee(employeemodel), "Logged In Successfully");
 	}
 
