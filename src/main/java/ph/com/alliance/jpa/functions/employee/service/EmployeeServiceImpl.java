@@ -1,5 +1,5 @@
 package ph.com.alliance.jpa.functions.employee.service;
-
+	
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import ph.com.alliance.jpa.entity.Employee;
 
 import ph.com.alliance.jpa.functions.employee.dao.EmployeeDao;
-
+	
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-
+	
 	@Autowired
 	EmployeeDao employeeDao;
-
+	
 	@Override
 	public List<Employee> getAllEmployees() {
 		// TODO Auto-generated method stub
@@ -44,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
-	
+		
 	}
 	
 	@Override
@@ -75,5 +75,5 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<Employee> employees = employeeDao.findByDepartment(department);
 		return employees;
 	}
-
+	
 }
