@@ -19,19 +19,24 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.stereotype.Service;
 
+
+import ph.com.alliance.jpa.entity.Employee;
+import ph.com.alliance.jpa.functions.employee.dao.EmployeeDao;
+
 import ph.com.alliance.jpa.entity.UserTest;
 import ph.com.alliance.jpa.functions.usertest.dao.UserTestDao;
+
 
 @Service
 public class LoginService implements ILoginService, UserDetailsService, TokenEnhancer {
 
     @Autowired
-    private UserTestDao userDao;
+    private EmployeeDao employeeDao;
     
     @Override
     public UserDetails loadUserByUsername(String strLoginId) throws UsernameNotFoundException {
 
-        UserTest login = ((List<UserTest>) userDao.findAll()).stream().filter(u -> u.getName().equals(strLoginId)).findFirst().orElse(null);
+        Employee login = ((List<Employee>) employeeDao.findAll()).stream().filter(u -> u.getEmail().equals(strLoginId)).findFirst().orElse(null);
         
         if (null != login ) {
             return new User(strLoginId, login.getPassword(), getAuthorities(Arrays.asList("ROLE_ADMIN")));
@@ -46,7 +51,7 @@ public class LoginService implements ILoginService, UserDetailsService, TokenEnh
         final Map<String, Object> additionalInfo = new HashMap<>();
         additionalInfo.put("username", user.getUsername());
         additionalInfo.put("authorities", user.getAuthorities());
-
+        
         ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
 
         return accessToken;
