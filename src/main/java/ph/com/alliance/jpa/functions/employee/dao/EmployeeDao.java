@@ -11,6 +11,7 @@ import ph.com.alliance.jpa.entity.Employee;
 
 @Repository
 public interface EmployeeDao extends JpaRepository<Employee, Integer>{
+	
 	@Query(value="select * from jumpstartprogram2023.employee where department = :department", nativeQuery = true)
 	List<Employee> findByDepartment(@Param(value = "department") String department);
 }

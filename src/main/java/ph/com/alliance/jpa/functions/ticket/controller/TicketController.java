@@ -54,17 +54,5 @@ public class TicketController {
 		return ApiResult.CreateSuccess(ticketservice.findByStatus(status), "Retrieved Successfully");
 	}
 	
-//	@PutMapping("/updatestatus/{status}/{ticketID}")
-//	public ApiResult updateTicketStatus(@PathVariable Integer ticketID, @PathVariable Integer status) {
-//		ticketservice.updateTicketStatus(ticketID, status);
-//		return ApiResult.CreateSuccess("Successfully updated!");
-//
-//	}
-	
-//	@PutMapping("/updatestatus/{status}/{ticketID}")
-//	public ApiResult updateTicketStatus(@PathVariable Integer ticketID, @PathVariable Integer status, @PathVariable Ticket ticket) {
-//		ticketservice.updateTicketStatus(ticketID, status, ticket);
-//		return ApiResult.CreateSuccess("Successfully updated!");
-//	}
-	
+
 }

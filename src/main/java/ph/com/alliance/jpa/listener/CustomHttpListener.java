@@ -1,10 +1,11 @@
 package ph.com.alliance.jpa.listener;
 
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
+
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *     Implementation class for receiving notification events about HttpSession life cycle changes
