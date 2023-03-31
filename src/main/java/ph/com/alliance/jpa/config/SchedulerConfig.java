@@ -1,17 +1,14 @@
 package ph.com.alliance.jpa.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
-
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 /**
  *     Configuration for Spring Scheduler

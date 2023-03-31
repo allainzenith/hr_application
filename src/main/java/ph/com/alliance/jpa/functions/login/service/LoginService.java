@@ -1,5 +1,11 @@
 package ph.com.alliance.jpa.functions.login.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,12 +21,6 @@ import org.springframework.stereotype.Service;
 
 import ph.com.alliance.jpa.entity.UserTest;
 import ph.com.alliance.jpa.functions.usertest.dao.UserTestDao;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class LoginService implements ILoginService, UserDetailsService, TokenEnhancer {

@@ -15,7 +15,6 @@ import org.springframework.stereotype.Repository;
 
 import ph.com.alliance.jpa.common.PagedList;
 import ph.com.alliance.jpa.entity.ShopTest;
-import ph.com.alliance.jpa.functions.shoptest.dao.ShopTestDao;
 import ph.com.alliance.jpa.functions.shoptest.model.Shop;
 
 @Repository 

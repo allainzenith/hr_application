@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ph.com.alliance.jpa.common.ApiResult;
 import ph.com.alliance.jpa.entity.Employee;
+import ph.com.alliance.jpa.functions.employee.model.EmployeeModel;
 import ph.com.alliance.jpa.functions.employee.service.EmployeeService;
 
 @RestController
@@ -50,6 +52,12 @@ public class EmployeeController {
 		employeeservice.findByDepartment(department);
 		
 		return ApiResult.CreateSuccess(employeeservice.findByDepartment(department), "Retrieved Successfully");
+	}
+	
+	@PostMapping("/login")
+	public ApiResult loginEmployee(@RequestBody EmployeeModel employeemodel) {
+		employeeservice.loginEmployee(employeemodel);
+		return ApiResult.CreateSuccess(employeeservice.loginEmployee(employeemodel), "Logged In Successfully");
 	}
 
 }
