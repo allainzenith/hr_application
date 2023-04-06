@@ -13,9 +13,9 @@
       <property name="hibernate.hbm2ddl.auto" value="update" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
       <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver" />
-      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3308/jumpstartprogram2023?useTimezone=true&amp;serverTimezone=UTC&amp;useLegacyDatetimeCode=false" />
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3308/jumpstartprogram2023?useTimezone=true&amp;serverTimezone=UTC&amp;useLegacyDatetimeCode=alse" />
       <property name="hibernate.connection.username" value="root" />
-      <property name="hibernate.connection.password" value="akosibadbox123" />      
+      <property name="hibernate.connection.password" value="project2023!" />      
       <property name="hibernate.connection.provider_class" value="com.zaxxer.hikari.hibernate.HikariConnectionProvider" />
     </properties>
 
