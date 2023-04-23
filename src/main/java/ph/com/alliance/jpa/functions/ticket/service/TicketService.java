@@ -15,5 +15,6 @@ public interface TicketService {
 	Object findByStatus(String status);
 	//void updateTicketStatus(Integer ticketID, Integer status);
 	void updateTicketStatus(Integer ticketID, Integer status, Ticket ticket);
+	Object findByEmpEmail();
 	
 }

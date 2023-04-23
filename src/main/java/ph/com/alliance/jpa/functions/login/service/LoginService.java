@@ -39,7 +39,7 @@ public class LoginService implements ILoginService, UserDetailsService, TokenEnh
         Employee login = ((List<Employee>) employeeDao.findAll()).stream().filter(u -> u.getEmail().equals(strLoginId)).findFirst().orElse(null);
         
         if (null != login ) {
-            return new User(strLoginId, login.getPassword(), getAuthorities(Arrays.asList("ROLE_ADMIN")));
+            return new User(strLoginId, login.getPassword(), getAuthorities(Arrays.asList("ROLE_USER")));
         }
         throw new UsernameNotFoundException(strLoginId);
     }

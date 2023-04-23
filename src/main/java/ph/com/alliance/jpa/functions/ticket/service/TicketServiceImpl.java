@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import ph.com.alliance.jpa.entity.Ticket;
@@ -91,6 +94,13 @@ public class TicketServiceImpl implements TicketService {
 			e.printStackTrace();
 		}
 	
+	}
+	
+	@Override
+	public List<Ticket> findByEmpEmail() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String empId = authentication.getName();
+        return ticketDao.findByEmpEmail(empId);
 	}
 	
 }
