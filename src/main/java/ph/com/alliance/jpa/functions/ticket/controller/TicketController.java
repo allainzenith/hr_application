@@ -54,7 +54,7 @@ public class TicketController {
 		return ApiResult.CreateSuccess(ticketservice.findByStatus(status), "Retrieved Successfully");
 	}
 	
-	@GetMapping("/empid")
+	@GetMapping("/tickets")
 	public ApiResult findByEmpEmail() {
 		ticketservice.findByEmpEmail();
 		

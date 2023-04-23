@@ -99,8 +99,8 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public List<Ticket> findByEmpEmail() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String empId = authentication.getName();
-        return ticketDao.findByEmpEmail(empId);
+        String email = authentication.getName();
+        return ticketDao.findByEmpEmail(email);
 	}
 	
 }
