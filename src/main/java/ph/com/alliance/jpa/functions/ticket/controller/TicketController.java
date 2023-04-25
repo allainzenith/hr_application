@@ -59,7 +59,16 @@ public class TicketController {
 		ticketservice.findByEmpEmail();
 		
 		return ApiResult.CreateSuccess(ticketservice.findByEmpEmail(), "Retrieved Successfully");
+		
 	}
+	
+	@GetMapping("/empID/{empID}")
+	public ApiResult findByEmpID(@PathVariable Integer empID){
+		ticketservice.findByEmpID(empID);
+		
+		return ApiResult.CreateSuccess(ticketservice.findByEmpID(empID), "Retrieved Successfully");
+	}
+
 	
 //	@PutMapping("/updatestatus/{status}/{ticketID}")
 //	public ApiResult updateTicketStatus(@PathVariable Integer ticketID, @PathVariable Integer status) {
