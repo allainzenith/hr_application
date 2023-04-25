@@ -70,6 +70,14 @@ public class TicketServiceImpl implements TicketService {
 		return tickets;
 	}
 	
+	@Override
+	public List<Ticket> findByEmpID(Integer empID){
+		ticketDao.findByEmpID(empID);
+		
+		List<Ticket> tickets = ticketDao.findByEmpID(empID);
+		return tickets;
+	}
+	
 //	@Override
 //	public void updateTicketStatus(Integer ticketId, Integer status) {
 //		Ticket ticket = new Ticket();	

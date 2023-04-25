@@ -23,4 +23,7 @@ public interface TicketDao extends JpaRepository<Ticket, Integer>{
 	
 	@Query(value="SELECT * FROM jumpstartprogram2023.ticket t INNER JOIN jumpstartprogram2023.employee e ON t.empId = e.empId WHERE e.email = :email", nativeQuery = true)
 	List<Ticket> findByEmpEmail(@Param(value = "email") String email);
+	
+	@Query(value="SELECT * FROM jumpstartprogram2023.ticket where empID = :empID", nativeQuery = true)
+	List<Ticket> findByEmpID(@Param(value="empID") Integer empID);
 }
