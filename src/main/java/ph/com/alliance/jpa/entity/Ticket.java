@@ -36,7 +36,29 @@ public class Ticket {
 	@Column(name = "created_at")
 	String created_at;
 	
+	@Column(name = "priority")
+	String priority;
 	
+	@Column(name = "date_needed")
+	String 	date_needed;
+	
+	
+	public String getPriority() {
+		return priority;
+	}
+
+	public void setPriority(String priority) {
+		this.priority = priority;
+	}
+
+	public String getDate_needed() {
+		return date_needed;
+	}
+
+	public void setDate_needed(String date_needed) {
+		this.date_needed = date_needed;
+	}
+
 	public String getCategory() {
 		return category;
 	}

@@ -12,6 +12,9 @@ import ph.com.alliance.jpa.entity.Ticket;
 @Repository
 public interface TicketDao extends JpaRepository<Ticket, Integer>{
 	
+	@Query(value="select * from jumpstartprogram2023.ticket where DATEDIFF(CURDATE(), created_at) >= 1", nativeQuery = true)
+	List<Ticket> getAllAgingTickets();
+	
 	@Query(value="select * from jumpstartprogram2023.ticket where status = :status", nativeQuery = true)
 	List<Ticket> findByStatus(@Param(value = "status") String status);
 	
@@ -24,6 +27,15 @@ public interface TicketDao extends JpaRepository<Ticket, Integer>{
 	@Query(value="SELECT * FROM jumpstartprogram2023.ticket t INNER JOIN jumpstartprogram2023.employee e ON t.empId = e.empId WHERE e.email = :email", nativeQuery = true)
 	List<Ticket> findByEmpEmail(@Param(value = "email") String email);
 	
+	@Query(value = "SELECT * FROM jumpstartprogram2023.ticket WHERE :usertype = 'empID' AND empID = :id "
+	        + "OR :usertype = 'assigned_to' AND assigned_to = :id", nativeQuery = true)
+	List<Ticket> findAllTickets(@Param(value = "usertype") String usertype, @Param(value = "id") Integer id);
+	
+	@Query(value = "SELECT * FROM jumpstartprogram2023.ticket WHERE DATEDIFF(CURDATE(), created_at) >= 1 AND :usertype = 'empID' AND empID = :id AND status=1 "
+	        + "OR DATEDIFF(CURDATE(), created_at) >= 1 AND :usertype = 'assigned_to' AND assigned_to = :id AND status=1", nativeQuery = true)
+	List<Ticket> findAgingTickets(@Param(value = "usertype") String usertype, @Param(value = "id") Integer id);
+
 	@Query(value="SELECT * FROM jumpstartprogram2023.ticket where empID = :empID", nativeQuery = true)
 	List<Ticket> findByEmpID(@Param(value="empID") Integer empID);
+
 }

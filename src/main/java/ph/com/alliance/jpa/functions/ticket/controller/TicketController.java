@@ -29,6 +29,14 @@ public class TicketController {
 		return ApiResult.CreateSuccess(ticketservice.getAllTickets(), "Tickets retrieved successfully");
 	}
 	
+	@GetMapping("/getall/aging")
+	public ApiResult getAllAgingTickets() {
+		//return "Hello Oslob";
+		//return ticketservice.getAllTickets();
+		
+		return ApiResult.CreateSuccess(ticketservice.getAllAgingTickets(), "Tickets retrieved successfully");
+	}
+	
 	@PostMapping("/create")
 	public ApiResult createTicket(Ticket ticketmodel) {
 		ticketservice.createTicket(ticketmodel);
@@ -62,25 +70,23 @@ public class TicketController {
 		
 	}
 	
-	@GetMapping("/empID/{empID}")
-	public ApiResult findByEmpID(@PathVariable Integer empID){
-		ticketservice.findByEmpID(empID);
-		
-		return ApiResult.CreateSuccess(ticketservice.findByEmpID(empID), "Retrieved Successfully");
-	}
 
 	
-//	@PutMapping("/updatestatus/{status}/{ticketID}")
-//	public ApiResult updateTicketStatus(@PathVariable Integer ticketID, @PathVariable Integer status) {
-//		ticketservice.updateTicketStatus(ticketID, status);
-//		return ApiResult.CreateSuccess("Successfully updated!");
-//
-//	}
+	@GetMapping("findAllTickets/{usertype}/{id}")
+	public ApiResult findAllTickets(@PathVariable String usertype, @PathVariable Integer id){
+		ticketservice.findAllTickets(usertype, id);
+		
+		return ApiResult.CreateSuccess(ticketservice.findAllTickets(usertype, id), "Retrieved Successfully");
+	}
+
+	@GetMapping("findAgingTickets/{usertype}/{id}")
+	public ApiResult findAgingTickets(@PathVariable String usertype, @PathVariable Integer id){
+		ticketservice.findAgingTickets(usertype, id);
+		
+		return ApiResult.CreateSuccess(ticketservice.findAgingTickets(usertype, id), "Retrieved Successfully");
+	}
 	
-//	@PutMapping("/updatestatus/{status}/{ticketID}")
-//	public ApiResult updateTicketStatus(@PathVariable Integer ticketID, @PathVariable Integer status, @PathVariable Ticket ticket) {
-//		ticketservice.updateTicketStatus(ticketID, status, ticket);
-//		return ApiResult.CreateSuccess("Successfully updated!");
-//	}
+
+	
 	
 }

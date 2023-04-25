@@ -19,12 +19,8 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.stereotype.Service;
 
-
 import ph.com.alliance.jpa.entity.Employee;
 import ph.com.alliance.jpa.functions.employee.dao.EmployeeDao;
-
-import ph.com.alliance.jpa.entity.UserTest;
-import ph.com.alliance.jpa.functions.usertest.dao.UserTestDao;
 
 
 @Service
@@ -33,11 +29,14 @@ public class LoginService implements ILoginService, UserDetailsService, TokenEnh
     @Autowired
     private EmployeeDao employeeDao;
     
+    private String userlogin;
+    
     @Override
     public UserDetails loadUserByUsername(String strLoginId) throws UsernameNotFoundException {
 
         Employee login = ((List<Employee>) employeeDao.findAll()).stream().filter(u -> u.getEmail().equals(strLoginId)).findFirst().orElse(null);
         
+        userlogin = strLoginId;
         if (null != login ) {
             return new User(strLoginId, login.getPassword(), getAuthorities(Arrays.asList("ROLE_USER")));
         }
@@ -47,9 +46,12 @@ public class LoginService implements ILoginService, UserDetailsService, TokenEnh
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
         User user = (User) authentication.getPrincipal();
-        
+        Employee login = ((List<Employee>) employeeDao.findAll()).stream().filter(u -> u.getEmail().equals(userlogin)).findFirst().orElse(null);
         final Map<String, Object> additionalInfo = new HashMap<>();
-        additionalInfo.put("username", user.getUsername());
+        additionalInfo.put("email", user.getUsername());
+        additionalInfo.put("empID", login.getEmpID());
+        additionalInfo.put("name", login.getName());
+        additionalInfo.put("emp_role", login.getEmp_role());
         additionalInfo.put("authorities", user.getAuthorities());
         
         ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
