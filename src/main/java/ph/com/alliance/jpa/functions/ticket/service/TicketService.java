@@ -4,7 +4,7 @@ import ph.com.alliance.jpa.entity.Ticket;
 
 public interface TicketService {
 	Object getAllTickets();
-	
+	Object getAllAgingTickets();
 	void createTicket(Ticket ticketmodel);
 	/**
 	 * This is a very awesome documentation
@@ -15,7 +15,7 @@ public interface TicketService {
 	Object findByStatus(String status);
 	//void updateTicketStatus(Integer ticketID, Integer status);
 	void updateTicketStatus(Integer ticketID, Integer status, Ticket ticket);
+	Object findAllTickets(String usertype, Integer id);
+	Object findAgingTickets(String usertype, Integer id);
 	Object findByEmpEmail();
-	Object findByEmpID(Integer empID);
-	
 }

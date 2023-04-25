@@ -89,18 +89,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 //		EmployeeModel employee = new EmployeeModel();
 		
 		loginemployeeDao.loginEmployee(employeemodel);
-//		try {
-//			BeanUtils.copyProperties(employee, employeemodel);
-//			loginemployeeDao.saveAndFlush(employee);
-//		} catch (IllegalAccessException e) {
-//			e.printStackTrace();
-//		} catch (InvocationTargetException e) {
-//			e.printStackTrace();
-//		}
 		
 		List<EmployeeModel> employees = loginemployeeDao.loginEmployee(employeemodel);
 		
 		return employees;
 	}
+	
+
 
 }
