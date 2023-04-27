@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ph.com.alliance.jpa.entity.Ticket;
 import ph.com.alliance.jpa.functions.ticket.dao.TicketDao;
@@ -40,6 +41,7 @@ public class TicketServiceImpl implements TicketService {
 		}
 	}
 	
+	
 	@Override
 	public void updateTicket(Integer ticketId, Ticket ticketmodel) {
 		Ticket ticket = new Ticket();
@@ -55,6 +57,39 @@ public class TicketServiceImpl implements TicketService {
 		}
 	
 	}
+	
+	@Transactional
+	@Override
+	public void updateTicketStatus(Integer ticketID, Ticket ticket) {
+		Ticket ticketmodel = new Ticket();
+		
+		try {
+			BeanUtils.copyProperties(ticketmodel, ticket);
+			ticket.setTicketID(ticketID);
+			ticketDao.updateTicketStatus(ticketID, ticketmodel);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	
+	}
+	
+	@Transactional
+	@Override
+	public void createATicket(Ticket ticket) {
+		Ticket ticketmodel = new Ticket();
+		
+		try {
+			BeanUtils.copyProperties(ticketmodel, ticket);
+			ticketDao.createATicket(ticketmodel);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	
 	@Override
@@ -76,23 +111,7 @@ public class TicketServiceImpl implements TicketService {
 		return tickets;
 	}
 
-	
-	@Override
-	public void updateTicketStatus(Integer ticketId, Integer status, Ticket ticketmodel) {
-		Ticket ticket = new Ticket();
-		
-		try {
-			BeanUtils.copyProperties(ticket, ticketmodel);
-			ticket.setTicketID(ticketId);
-			ticketDao.updateTicketStatus(ticketId, status, ticketmodel);
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		}
-	
-	}
-	
+
 
 	
 	@Override

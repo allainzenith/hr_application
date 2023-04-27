@@ -2,6 +2,8 @@ package ph.com.alliance.jpa.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,17 +11,21 @@ import javax.persistence.Table;
 @Table(name = "ticket")
 public class Ticket {
 	
+//	@Id
+//	Integer ticketID;
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer ticketID;
 	
 	@Column(name = "status")
-	String status;
+	Integer status;	
 	
 	@Column(name = "description")
 	String description;
 	
 	@Column(name = "category")
-	String category;
+	Integer category;
 	
 	@Column (name = "assigned_to")
 	Integer assigned_to;
@@ -59,11 +65,11 @@ public class Ticket {
 		this.date_needed = date_needed;
 	}
 
-	public String getCategory() {
+	public Integer getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Integer category) {
 		this.category = category;
 	}
 
@@ -116,11 +122,11 @@ public class Ticket {
 		this.ticketID = ticketID;
 	}
 
-	public String getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 

@@ -3,6 +3,7 @@ package ph.com.alliance.jpa.functions.ticket.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -18,11 +19,15 @@ public interface TicketDao extends JpaRepository<Ticket, Integer>{
 	@Query(value="select * from jumpstartprogram2023.ticket where status = :status", nativeQuery = true)
 	List<Ticket> findByStatus(@Param(value = "status") String status);
 	
-//	@Query(value="update jumpstartprogram2023.ticket set status =:status where ticketID = :ticketID", nativeQuery = true)
-//	void updateTicketStatus(@Param(value = "ticketID") Integer ticketID, @Param(value = "status") Integer status);
+
+	@Modifying
+	@Query(value = "INSERT INTO jumpstartprogram2023.ticket (status, description, category, assigned_to, empID, subject, attachment, created_at, priority, date_needed) VALUES (:#{#ticketmodel.status}, :#{#ticketmodel.description}, :#{#ticketmodel.category}, :#{#ticketmodel.assigned_to}, :#{#ticketmodel.empID}, :#{#ticketmodel.subject}, :#{#ticketmodel.attachment}, :#{#ticketmodel.created_at}, :#{#ticketmodel.priority}, :#{#ticketmodel.date_needed})", nativeQuery = true)
+	void createATicket(@Param(value="ticketmodel") Ticket ticketmodel);
 	
-	@Query(value="update jumpstartprogram2023.ticket set status =:status where ticketID = :ticketID", nativeQuery = true)
-	void updateTicketStatus(@Param(value = "ticketID") Integer ticketID, @Param(value = "status") Integer status, @Param(value = "ticket") Ticket ticket);
+	@Modifying
+	@Query(value="update jumpstartprogram2023.ticket set status =:#{#ticketmodel.status} where ticketID = :ticketID", nativeQuery = true)
+	void updateTicketStatus(@Param(value = "ticketID") Integer ticketID, @Param(value = "ticketmodel") Ticket ticketmodel);
+
 	
 	@Query(value="SELECT * FROM jumpstartprogram2023.ticket t INNER JOIN jumpstartprogram2023.employee e ON t.empId = e.empId WHERE e.email = :email", nativeQuery = true)
 	List<Ticket> findByEmpEmail(@Param(value = "email") String email);

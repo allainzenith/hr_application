@@ -43,10 +43,24 @@ public class TicketController {
 		return ApiResult.CreateSuccess("Successfully created!");
 	}
 	
+
+	
 	@PutMapping("/update/{ticketID}")
 	public ApiResult updateTicket(@PathVariable Integer ticketID, Ticket ticketmodel) {
 		ticketservice.updateTicket(ticketID, ticketmodel);
 		return ApiResult.CreateSuccess("Successfully updated!");
+	}
+	
+	@PutMapping("/updatestatus/{ticketID}")
+	public ApiResult updateTicketStatus(@PathVariable Integer ticketID, Ticket ticketmodel) {
+		ticketservice.updateTicketStatus(ticketID, ticketmodel);
+		return ApiResult.CreateSuccess("Successfully updated!");
+	}
+	
+	@PostMapping("/createticket")
+	public ApiResult createATicket(Ticket ticketmodel) {
+		ticketservice.createATicket(ticketmodel);
+		return ApiResult.CreateSuccess("Successfully created!");
 	}
 	
 	@DeleteMapping("/delete/{ticketID}")
@@ -69,8 +83,6 @@ public class TicketController {
 		return ApiResult.CreateSuccess(ticketservice.findByEmpEmail(), "Retrieved Successfully");
 		
 	}
-	
-
 	
 	@GetMapping("findAllTickets/{usertype}/{id}")
 	public ApiResult findAllTickets(@PathVariable String usertype, @PathVariable Integer id){
